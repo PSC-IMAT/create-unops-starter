@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "A Next.JS +16 starter template for UNOPS ",
   "bin": "./bin/cli.js",
-  "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
