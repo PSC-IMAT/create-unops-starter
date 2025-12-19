@@ -1,6 +1,29 @@
+"use client";
+import { Button } from "@/components/ui/button";
+import {
+  TooltipProvider,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { siteConfig } from "@/config/site";
+import { Check, Copy } from "lucide-react";
+import { useState } from "react";
 
 export default function Page() {
+  const [copied, setCopied] = useState(false);
+  const npxCommand = `npx create-unops-app@latest <my-unops-app>`;
+
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(npxCommand);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy text: ", err);
+    }
+  };
+
   return (
     <div className="space-y-16">
       {/* Hero Section */}
@@ -38,9 +61,14 @@ export default function Page() {
         <h2 className="text-2xl font-bold">What&apos;s Inside</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {features.map((feature) => (
-            <div key={feature.title} className="p-6 border border-border rounded-lg">
+            <div
+              key={feature.title}
+              className="p-6 border border-border rounded-lg"
+            >
               <h3 className="font-semibold mb-2">{feature.title}</h3>
-              <p className="text-sm text-muted-foreground">{feature.description}</p>
+              <p className="text-sm text-muted-foreground">
+                {feature.description}
+              </p>
             </div>
           ))}
         </div>
@@ -51,10 +79,34 @@ export default function Page() {
         <div className="space-y-4">
           <h2 className="text-2xl font-bold">Ready to Build?</h2>
           <p className="text-muted-foreground max-w-2xl">
-            Start building your UN/UNOPS project with this clean, production-ready starter.
+            Start building your UN/UNOPS project with this clean,
+            production-ready starter.
           </p>
           <div className="flex flex-row">
-            <code className="bg-muted rounded-md px-4 py-2 text-sm font-mono">npx create-unops-app@latest my-unops-app</code>
+            <code className="bg-muted rounded-md px-4 py-2 text-sm font-mono">
+              npx create-unops-app@latest my-unops-app
+            </code>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipContent className="font-mono">
+                  Copy npx command
+                </TooltipContent>
+                <TooltipTrigger asChild>
+                  <Button
+                    onClick={copyToClipboard}
+                    variant="outline"
+                    className="p-4"
+                    aria-label="Copy npx command to clipboard"
+                  >
+                    {copied ? (
+                      <Check className="size-4" />
+                    ) : (
+                      <Copy className="size-4" />
+                    )}
+                  </Button>
+                </TooltipTrigger>
+              </Tooltip>
+            </TooltipProvider>
           </div>
         </div>
       </section>

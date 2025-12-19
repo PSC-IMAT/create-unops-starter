@@ -1,6 +1,6 @@
 {
   "name": "create-unops-starter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Next.JS +16 starter template for UNOPS ",
   "bin": "./bin/cli.js",
   "scripts": {
@@ -14,13 +14,13 @@
     "url": "https://github.com/PSC-IMAT/create-unops-starter"
   },
   "dependencies": {
-    "@radix-ui/react-slot": "^1.2.4",
     "autoprefixer": "^10.4.23",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.562.0",
     "next": "16.1.0",
     "postcss-import": "^16.1.1",
+    "radix-ui": "^1.4.3",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "tailwind-merge": "^3.4.0"

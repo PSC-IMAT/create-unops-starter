@@ -1,19 +1,21 @@
 # UNOPS Starter
 
-A minimal, cloneable Next.js starter repository for UN/UNOPS projects. Pre-configured with a UN-ready theme, global layout shell, and registry-ready component system.
+A minimal, cloneable Next.js starter repository for UN/UNOPS projects. Pre-configured with a UN-ready theme, a global layout shell, and a registry-ready component system.
 
-**Not a product, not a framework**—just a clean base to build upon.
+**Not a product, not a framework** — just a clean base to build upon.
+
+> Starter repo: `create-unops-starter`
 
 ---
 
-## What's Inside
+## What’s Inside
 
-- **Next.js 15+** with App Router and TypeScript
-- **UN/UNOPS-ready theme** with CSS variables + Tailwind tokens
+- **Next.js (App Router)** + **TypeScript**
+- **UN/UNOPS-ready theme** (CSS variables + Tailwind tokens)
 - **Global layout shell** (Header, Container, Footer)
 - **Clean architecture** under `/src` with organized folders
-- **shadcn CLI compatible** for installing components from registry
-- **Vercel-ready** (serverless-friendly, zero special config)
+- **shadcn CLI compatible** (install components from registry)
+- **Vercel-ready** (serverless-friendly, no special config)
 
 ---
 
@@ -21,30 +23,34 @@ A minimal, cloneable Next.js starter repository for UN/UNOPS projects. Pre-confi
 
 ### Prerequisites
 
-- Node.js 18+ (or use pnpm directly)
-- pnpm (recommended) or npm/yarn
+- Node.js **20+**
+- npm (or your preferred package manager)
 
 ### Setup
 
 ```bash
 # Clone this repo or use it as a template
-git clone https://github.com/un-org/unops-starter.git my-project
+npx create-unops-starter@latest my-project
 cd my-project
 
 # Install dependencies
-pnpm install
+npm install
 
 # Start development server
-pnpm dev
+npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see your app.
+Open `http://localhost:3000` to see your app.
 
-### Build for Production
+---
+
+## Scripts
 
 ```bash
-pnpm build
-pnpm start
+npm run dev     # Start dev server
+npm run build   # Production build
+npm run start   # Start production server
+npm run lint    # Run ESLint
 ```
 
 ---
@@ -53,33 +59,32 @@ pnpm start
 
 ### CSS Variables
 
-The UN/UNOPS theme is built on CSS variables defined in **src/styles/tokens.css**.
+The UN/UNOPS theme is built on CSS variables defined in `src/styles/globals.css`.
 
 Current palette:
 - **Primary:** UN Blue (`#1E5BA8`)
 - **Secondary:** Lighter blue
 - **Accent:** Warm orange
 - **Neutrals:** Clean grays for text and backgrounds
-- **Dark mode:** Full support via `.dark` class
+- **Dark mode:** Full support via the `.dark` class
 
 ### Customizing Colors
 
-Edit `src/styles/tokens.css`:
+Edit `src/styles/globals.css`:
 
 ```css
 :root {
-  --primary: 213 94% 45%; /* Change primary color */
-  --accent: 30 100% 50%;   /* Change accent color */
+  /* Values use HSL triplets (for hsl(var(--token))) */
+  --primary: 213 94% 45%;
+  --accent: 30 100% 50%;
   /* ... other tokens */
 }
 ```
 
-Values use `hsl()` format (Hue Saturation Lightness) for easy tweaking.
-
 ### Typography
 
-Global typography rules are in **src/styles/typography.css**. Includes:
-- System font stack (system-ui, -apple-system, sans-serif)
+Global typography rules are in `src/styles/globals.css`. Includes:
+- System font stack (`system-ui`, `-apple-system`, `sans-serif`)
 - Heading and body text styles
 - Code styling
 
@@ -87,27 +92,25 @@ Global typography rules are in **src/styles/typography.css**. Includes:
 
 ## Project Structure
 
-```
+```txt
 src/
 ├── app/                    # Next.js App Router
-│   ├── layout.tsx         # Root layout with Header, Footer
-│   ├── page.tsx           # Homepage
-│   └── globals.css        # Global styles
+│   ├── layout.tsx          # Root layout with Header, Footer
+│   ├── page.tsx            # Homepage
 ├── components/
-│   ├── layout/            # Layout components
+│   ├── layout/             # Layout components
 │   │   ├── site-header.tsx
 │   │   ├── site-footer.tsx
 │   │   └── container.tsx
-│   └── ui/                # UI primitives (from registry)
+│   └── ui/                 # UI primitives (from registry)
 ├── config/
-│   └── site.ts            # Site metadata and config
+│   └── site.ts             # Site metadata and config
 ├── lib/
-│   └── utils.ts           # Utility functions (cn() helper)
+│   └── utils.ts            # Utility functions (cn() helper)
 ├── styles/
-│   ├── tokens.css         # CSS variables (theme)
-│   └── typography.css     # Typography rules
+│   └── globals.css         # Global styles and theme variables
 └── types/
-    └── index.ts           # Shared TypeScript types
+    └── index.ts            # Shared TypeScript types
 ```
 
 ---
@@ -116,76 +119,35 @@ src/
 
 ### Step 1: Initialize shadcn (first time only)
 
-If you haven't already, set up the shadcn CLI:
-
 ```bash
-pnpm dlx shadcn@latest init
+npx shadcn@latest init
 ```
 
 (The tool will ask a few questions; defaults are fine for this project.)
 
 ### Step 2: Browse Components
 
-Visit **registry-unops.vercel.app** to explore available components and blocks.
+Explore components and blocks on: `registry-unops.vercel.app`
 
 ### Step 3: Install a Component
 
 ```bash
-pnpm dlx shadcn@latest add <registry-item-url>
+npx shadcn@latest add <registry-item-url>
 ```
 
 **Example:**
 
 ```bash
-pnpm dlx shadcn@latest add https://registry-unops.vercel.app/r/button
+npx shadcn@latest add 'https://registry-unops.vercel.app/r/button.json?token=...'
 ```
 
-Components are installed to `src/components/ui/` and automatically respect your UN/UNOPS theme.
+Installed components land in `src/components/ui/` and automatically respect your UN/UNOPS theme.
 
----
+### Updating a Registry Component (recommended workflow)
 
-## Deployment
-
-### Vercel (Recommended)
-
-```bash
-# 1. Push to GitHub
-git push origin main
-
-# 2. Go to https://vercel.com and connect your repo
-# 3. Deploy with one click (no special config needed)
-```
-
-### Other Platforms
-
-- **Docker:** Add a `Dockerfile` if needed
-- **Node.js:** Works on any Node.js 18+ server
-- **Static export:** Modify `next.config.ts` if needed (not the default)
-
----
-
-## Development Guidelines
-
-### Code Style
-
-- Use TypeScript (strict mode enabled)
-- Keep components small and focused
-- Use `src/lib/utils.ts` for the `cn()` helper (Tailwind + clsx)
-- No unnecessary dependencies
-
-### Linting
-
-```bash
-pnpm lint
-```
-
----
-
-## File Naming
-
-- Components: PascalCase (`Button.tsx`, `SiteHeader.tsx`)
-- Utilities: camelCase (`utils.ts`)
-- Types: use `.ts` or `.tsx` files in `src/types/`
+Re-running `shadcn add` can overwrite files. If you plan to customize a component, prefer:
+- **Wrapping** the component (keep the base component intact), or
+- Copy it into `src/components/custom/` and import from there.
 
 ---
 
@@ -197,74 +159,78 @@ Copy `.env.example` to `.env.local` and add your secrets:
 cp .env.example .env.local
 ```
 
-Edit `.env.local` and add values (never commit this file).
+**Never commit** `.env.local`.
+
+Suggested convention:
+
+| Variable | Required | Purpose |
+|---------|----------|---------|
+| `NEXT_PUBLIC_*` | Sometimes | Client-safe config (ex: public endpoints) |
+| `*SECRET*` / `*_TOKEN` | Yes (if used) | Server-only secrets |
 
 ---
 
-## FAQs
+## Deployment
 
-### Can I use this with npm/yarn?
+### Vercel (Recommended)
 
-Yes! All commands work with `npm` or `yarn`. Just replace `pnpm` with your package manager.
+- Push your repo to GitHub
+- Import it into Vercel
+- Deploy (no special config needed)
 
-### How do I add a custom font?
+### Other Platforms
 
-1. Use Next.js built-in font support or import from a CDN
-2. Update `src/styles/typography.css`
-3. Modify `tailwind.config.ts` if using a custom font family
-
-### How do I change the site name/description?
-
-Edit `src/config/site.ts`:
-
-```typescript
-export const siteConfig: SiteConfig = {
-  name: "My Project",
-  description: "My custom description",
-  // ...
-};
-```
-
-### Can I use a database?
-
-Yes, but this starter doesn't include one. Add Prisma, Drizzle, or your choice of ORM. This starter is intentionally minimal.
+- **Docker:** add a `Dockerfile` if needed
+- **Node.js server:** works on any Node.js 20+ environment
 
 ---
 
-## Tech Stack
+## Development Guidelines
 
-- **Framework:** Next.js 15 (App Router)
-- **Language:** TypeScript
-- **Styling:** Tailwind CSS 4 + CSS variables
-- **Build:** React Compiler enabled
-- **Package Manager:** pnpm (but npm/yarn work too)
+- Use TypeScript (strict mode recommended)
+- Keep components small and focused
+- Use `src/lib/utils.ts` for the `cn()` helper
+- Avoid unnecessary dependencies
+
+### File Naming
+
+- Components: PascalCase (`Button.tsx`, `SiteHeader.tsx`)
+- Utilities: camelCase (`utils.ts`)
+- Types: `.ts` or `.tsx` in `src/types/`
+
+---
+
+## Troubleshooting
+
+### Dark mode isn’t working
+- Ensure `.dark` is applied on the root element (commonly `html` or `body`)
+- Verify your CSS variables include both light and dark scopes
+
+### Tailwind tokens don’t apply
+- Confirm your Tailwind content paths include `./src/**/*`
+- Restart the dev server after config changes
+
+### shadcn install overwrote my edits
+- Prefer wrapping components or duplicating into `src/components/custom/`
+
+---
+
+## Roadmap (Optional)
+
+- Add CI (lint + build) via GitHub Actions
+- Add an example “page template” using registry blocks
+- Add optional i18n starter structure
 
 ---
 
 ## License
 
-MIT © 2024 United Nations. See [LICENSE](LICENSE) for details.
+MIT © 2026 PascheK7. See `LICENSE` for details.
 
 ---
 
 ## Support & Community
 
-- **Registry:** registry-unops.vercel.app
-- **GitHub Issues:** Report bugs or request features
-- **Discussions:** Ask questions
-
----
-
-## Contributing
-
-Contributions welcome! Please follow the existing code style and open a PR.
-
----
-
-**Built with ❤️ for UN/UNOPS projects.**
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Registry:** `registry-unops.vercel.app`
+- **GitHub Issues:** bug reports / feature requests
+- **Discussions:** questions & usage
