@@ -7,7 +7,7 @@ export const siteConfig: SiteConfig = {
   url: "https://unops-starter.vercel.app",
   ogImage: "https://unops-starter.vercel.app/og.png",
   links: {
-    github: "https://github.com/un-org/unops-starter",
+    github: "https://github.com/PSC-IMAT/create-unops-starter",
     docs: "https://registry-unops.vercel.app/",
   },
 };

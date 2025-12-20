@@ -53,7 +53,7 @@ export function SiteFooter() {
 
         {/* Copyright */}
         <div className="border-t border-border pt-8 text-center text-sm text-muted-foreground">
-          <p>© {currentYear} United Nations. All rights reserved.</p>
+          <p>© {currentYear} PascheK. Made with ❤️ for UNOPS</p>
         </div>
       </Container>
     </footer>

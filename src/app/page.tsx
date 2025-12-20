@@ -82,9 +82,9 @@ export default function Page() {
             Start building your UN/UNOPS project with this clean,
             production-ready starter.
           </p>
-          <div className="flex flex-row">
+          <div className="flex flex-row gap-3 justify-center">
             <code className="bg-muted rounded-md px-4 py-2 text-sm font-mono">
-              npx create-unops-app@latest my-unops-app
+              {npxCommand}
             </code>
             <TooltipProvider>
               <Tooltip>
