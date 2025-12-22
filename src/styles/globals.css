@@ -228,7 +228,4 @@
   body {
     @apply bg-background text-foreground;
   }
-  .mapboxgl-ctrl-attrib-inner{
-    @apply hidden
-  }
 }
