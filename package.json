@@ -1,5 +1,5 @@
 {
-  "name": "create-unops-starter",
+  "name": "khartoum-damage-assessment",
   "version": "1.0.3",
   "description": "A Next.JS +16 starter template for UNOPS ",
   "bin": {
@@ -45,7 +45,9 @@
     "autoprefixer": "^10.4.23",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "gsap": "^3.14.2",
     "lucide-react": "^0.562.0",
+    "mapbox-gl": "^3.17.0",
     "next": "16.1.0",
     "postcss-import": "^16.1.1",
     "radix-ui": "^1.4.3",
